@@ -40,39 +40,35 @@ router.route('/auth/login').post(async (req, res) => {
   });
 
 
-router.route('/auth/register').post(async (req, res) => {
+  router.route('/auth/register').post(async (req, res) => {
     const session = await mongoose.startSession();
-    session.startTransaction()
+    session.startTransaction();
+    
     const { name, email, password } = req.body;
-    console.log(req.body)
+  
     try {
       let user = await User.findOne({ email });
       if (user) {
-        throw new BAD_REQUEST('User already exists')
+        throw new BAD_REQUEST('User already exists');
       }
-      await User.create([{ name, email, password }],{session});
-
-     if(User.length > 0){
-       const initialDummyTask = {
-          name:'Example',
-          completed:true,
-          userId: User[0]._id
-        }
+      const createdUsers = await User.create([{ name, email, password }], { session });
+      const newUser = createdUsers[0];
+      if (newUser) {
+        const initialDummyTask = {
+          name: 'Example',
+          completed: true,
+          userId: newUser._id
+        };
         await Task.create([initialDummyTask], { session });
       }
       await session.commitTransaction();
-      res.status(StatusCodes.CREATED).json({success: true});
+      res.status(StatusCodes.CREATED).json({ success: true });
     } catch (error) {
-        await session.abortTransaction();
-        throw error;
-    } finally { 
-        session.endSession();
+      await session.abortTransaction();
+      throw error;
+    } finally {
+      session.endSession();
     }
-  });
-  
-  router.post('/logout', (req, res) => {
-    res.clearCookie('taskToken');
-    res.status(StatusCodes.OK).json({success:true});
   });
   
 
