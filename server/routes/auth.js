@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const BAD_REQUEST = require('../errors/badRequest');
 const router = require('express').Router();
 const authLayout = '../views/layouts/auth';
+const Task = require('../models/Task');
 
 
 router.route('/').get(async (req,res)=>{
@@ -50,6 +51,15 @@ router.route('/auth/register').post(async (req, res) => {
         throw new BAD_REQUEST('User already exists')
       }
       await User.create([{ name, email, password }],{session});
+
+     if(User.length > 0){
+       const initialDummyTask = {
+          name:'Example',
+          completed:true,
+          userId: User[0]._id
+        }
+        await Task.create([initialDummyTask], { session });
+      }
       await session.commitTransaction();
       res.status(StatusCodes.CREATED).json({success: true});
     } catch (error) {
