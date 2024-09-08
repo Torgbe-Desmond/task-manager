@@ -71,5 +71,10 @@ router.route('/auth/login').post(async (req, res) => {
     }
   });
   
+  router.post('/logout', (req, res) => {
+    res.clearCookie('taskToken');
+    res.status(StatusCodes.OK).json({success:true});
+  });
+  
 
   module.exports = router;
