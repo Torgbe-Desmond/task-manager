@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
 logoutButton.addEventListener('click', async function(){
   try {
-    const response = await axios.post('http://localhost:3000/logout');
+    const response = await axios.post('https://task-manager-lj45.onrender.com/logout');
     if (response.data.success) {
-        window.location.href = '/';
+        window.location.href = 'https://task-manager-lj45.onrender.com';
     } else {
         alert('Logout failed. Please try again.');
     }
@@ -57,7 +57,7 @@ logoutButton.addEventListener('click', async function(){
 // Function to delete a task
 async function deleteTask(id) {
   try {
-    const response = await axios.delete(`http://localhost:3000/tasks/${id}`);
+    const response = await axios.delete(`https://task-manager-lj45.onrender.com/tasks/${id}`);
     
     if (response.status === 200) { 
       const { _id } = response.data;
@@ -68,7 +68,7 @@ async function deleteTask(id) {
       });
     } else if (response.status === 401) {
       alert('Your session has expired. Please log in again.');
-      window.location.href = '/';    }
+      window.location.href = 'https://task-manager-lj45.onrender.com';    }
   } catch (error) {
     console.error('Error deleting task:', error);
   }
@@ -83,7 +83,7 @@ async function submitTask(e) {
   
   const name = taskInputDOM.value;
   try {
-    const response = await axios.post('http://localhost:3000/tasks', 
+    const response = await axios.post('https://task-manager-lj45.onrender.com/tasks', 
       { name });
 
       if(response.status === 201){
@@ -100,7 +100,7 @@ async function submitTask(e) {
             </h5>
             <div class="task-links">
               <!-- edit link -->
-              <a href="/tasks/${taskID}" class="edit-link">
+              <a href="https://task-manager-lj45.onrender.com/tasks/${taskID}" class="edit-link">
                 <i class="fas fa-edit"></i>
               </a>
               <!-- delete btn -->
@@ -122,7 +122,7 @@ async function submitTask(e) {
         formAlertDOM.classList.add('text-success');
       } else if(response.status === 401){
         alert('Your session has expired. Please log in again.');
-        window.location.href = '/';
+        window.location.href = 'https://task-manager-lj45.onrender.com';
       }
   } catch (error) {
     formAlertDOM.style.display = 'block';

@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const taskID = taskIDDOM.textContent.trim();
 
-      const response = await axios.patch(`/tasks/${taskID}`, {
+      const response = await axios.patch(`https://task-manager-lj45.onrender.com/tasks/${taskID}`, {
         name: taskName,
         completed: taskCompleted,
       });
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
      } else if(response.status === 401) {
       alert('Your session has expired. Please log in again.');
-      window.location.href = '/';     }
+      window.location.href = 'https://task-manager-lj45.onrender.com';     }
     } catch (error) {
       console.error(error);
       document.querySelector('.task-edit-name').value = tempName;

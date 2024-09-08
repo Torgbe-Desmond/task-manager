@@ -13,7 +13,7 @@ app.use(express.static('./public'));
 app.use(express.json()); 
 app.use(methodOverride('_method'));
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://task-manager-lj45.onrender.com',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'], // List the headers you want to allow
   credentials: true
