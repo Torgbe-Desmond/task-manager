@@ -48,10 +48,10 @@ document.addEventListener('DOMContentLoaded', function () {
       const password = document.querySelector('#login-form input[name="password"]').value;
   
       try {
-        const response = await axios.post('http://localhost:3000/auth/login', { email, password });
+        const response = await axios.post('https://task-manager-lj45.onrender.com/auth/login', { email, password });
         const { success } = response.data;
         // Redirect to /tasks after successful login
-        if(success) window.location.href = '/tasks';
+        if(success) window.location.href = 'https://task-manager-lj45.onrender.com/tasks';
       } catch (error) {
         console.error('Login error:', error.response?.data || error.message);
         alert('Login failed! Please check your credentials.');
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
   
       try {
-        const response = await axios.post('http://localhost:3000/auth/register',{ name, email, password });
+        const response = await axios.post('https://task-manager-lj45.onrender.com/auth/register',{ name, email, password });
         const { success } = response.data;
         if(success) showLoginForm();
       } catch (error) {
