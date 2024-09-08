@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
      } else if(response.status === 401) {
       alert('Your session has expired. Please log in again.');
-      window.location.href = '/auth';     }
+      window.location.href = '/';     }
     } catch (error) {
       console.error(error);
       document.querySelector('.task-edit-name').value = tempName;

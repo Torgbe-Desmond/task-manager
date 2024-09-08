@@ -7,7 +7,7 @@ const router = require('express').Router();
 const authLayout = '../views/layouts/auth';
 
 
-router.route('/auth').get(async (req,res)=>{
+router.route('/').get(async (req,res)=>{
   const locals = {
     title: "Task Manager",
     description: "Manage your task seemlessly."

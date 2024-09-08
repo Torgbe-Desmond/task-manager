@@ -24,7 +24,7 @@ logoutButton.addEventListener('click', async function(){
   try {
     const response = await axios.post('http://localhost:3000/logout');
     if (response.data.success) {
-        window.location.href = '/auth';
+        window.location.href = '/';
     } else {
         alert('Logout failed. Please try again.');
     }
@@ -68,7 +68,7 @@ async function deleteTask(id) {
       });
     } else if (response.status === 401) {
       alert('Your session has expired. Please log in again.');
-      window.location.href = '/auth';    }
+      window.location.href = '/';    }
   } catch (error) {
     console.error('Error deleting task:', error);
   }
@@ -122,7 +122,7 @@ async function submitTask(e) {
         formAlertDOM.classList.add('text-success');
       } else if(response.status === 401){
         alert('Your session has expired. Please log in again.');
-        window.location.href = '/auth';
+        window.location.href = '/';
       }
   } catch (error) {
     formAlertDOM.style.display = 'block';
