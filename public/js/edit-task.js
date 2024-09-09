@@ -4,60 +4,41 @@ document.addEventListener('DOMContentLoaded', function () {
   const editFormDOM = document.querySelector('.single-task-form');
   const editBtnDOM = document.querySelector('.task-edit-btn');
   const formAlertDOM = document.querySelector('.form-alert');
-
   let tempName = document.querySelector('.task-edit-name').value;
 
+  const BASE_URL = 'https://task-manager-lj45.onrender.com';
 
-  // function showModal() {
-  //   document.getElementById('sessionExpiredModal').style.display = 'flex';
-  // }
-  
-  // function hideModal() {
-  //   document.getElementById('sessionExpiredModal').style.display = 'none';
-  // }
-  
-  // function handleLogout() {
-  //   window.location.href = '/ap1/v1/auth';
-  // }
-  
-  // window.onload = showModal;
-  
-  // document.getElementById('logoutButton').addEventListener('click', () => {
-  //   handleLogout();
-  //   hideModal();
-  // });
+  // const BASE_URL = 'http://localhost:3000';
 
-
-  // Handle the form submit event
   editFormDOM.addEventListener('submit', async function (e) {
     e.preventDefault();
-    
-    editBtnDOM.textContent = 'Editing...'; // Show the loading state
+
+    editBtnDOM.textContent = 'Editing...'; 
     try {
       const taskName = document.querySelector('.task-edit-name').value;
       const taskCompleted = taskCompletedDOM.checked;
-
       const taskID = taskIDDOM.textContent.trim();
 
-      const response = await axios.patch(`https://task-manager-lj45.onrender.com/tasks/${taskID}`, {
+      const response = await axios.patch(`${BASE_URL}/tasks/${taskID}`, {
         name: taskName,
         completed: taskCompleted,
       });
 
-     if(response.status === 200) {
-      const { data: { task } } = response;
-      const { _id: updatedTaskID, completed, name } = task;
+      if (response.status === 200) {
+        const { data: { task } } = response;
+        const { _id: updatedTaskID, completed, name } = task;
 
-      document.querySelector('.task-edit-name').value = name;
-      taskCompletedDOM.checked = completed;
+        document.querySelector('.task-edit-name').value = name;
+        taskCompletedDOM.checked = completed;
 
-      formAlertDOM.style.display = 'block';
-      formAlertDOM.textContent = 'Success, edited task';
-      formAlertDOM.classList.add('text-success');
+        formAlertDOM.style.display = 'block';
+        formAlertDOM.textContent = 'Success, edited task';
+        formAlertDOM.classList.add('text-success');
 
-     } else if(response.status === 401) {
-      alert('Your session has expired. Please log in again.');
-      window.location.href = 'https://task-manager-lj45.onrender.com';     }
+      } else if (response.status === 401) {
+        alert('Your session has expired. Please log in again.');
+        window.location.href = BASE_URL; 
+      }
     } catch (error) {
       console.error(error);
       document.querySelector('.task-edit-name').value = tempName;

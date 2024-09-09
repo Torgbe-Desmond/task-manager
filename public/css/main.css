@@ -229,6 +229,14 @@ textarea {
   width: 100%;
   margin-top: 1rem;
 }
+
+.task-edit-id{
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: scroll;
+  contain: content;
+}
+
 @media screen and (min-width: 576px) {
   .form-control {
     display: flex;
@@ -414,6 +422,8 @@ form > :last-child {
   grid-template-columns: 150px 1fr;
   align-items: center;
   justify-items: start;
+  box-sizing: border-box;
+  contain: content;
   gap: 0 1rem;
   margin-bottom: 0.75rem;
 }
@@ -540,6 +550,11 @@ form > :last-child {
   background-color:transparent;
   color: white;
   padding: 10px 20px;
+  /* border: 1px solid red; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 /* Header Title */
