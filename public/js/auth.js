@@ -1,11 +1,13 @@
+const BASE_URL = 'https://task-manager-lj45.onrender.com';
+// const BASE_URL = 'http://localhost:3000';
+
+
 document.addEventListener('DOMContentLoaded', function () {
   const loginForm = document.getElementById('login-form');
   const registerForm = document.getElementById('register-form');
   const switchToRegisterLink = document.getElementById('switch-to-register');
   const switchToLoginLink = document.getElementById('switch-to-login');
 
-  const BASE_URL = 'https://task-manager-lj45.onrender.com';
-  // const BASE_URL = 'http://localhost:3000';
 
   function showLoginForm() {
     loginForm.style.display = 'block';

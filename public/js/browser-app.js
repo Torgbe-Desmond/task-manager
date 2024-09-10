@@ -1,3 +1,7 @@
+const BASE_URL = 'https://task-manager-lj45.onrender.com';
+// const BASE_URL = 'http://localhost:3000';
+
+
 document.addEventListener('DOMContentLoaded', function() {
   const taskContainer = document.querySelector('.tasks');
   const loadingText = document.querySelector('.loading-text');
@@ -7,9 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const logoutButton = document.getElementById('logoutButton');
 
   // Store base URL in a constant
-  const BASE_URL = 'https://task-manager-lj45.onrender.com';
-  // const BASE_URL = 'http://localhost:3000';
-
 
   // Handle task form submit
   taskFormDOM.addEventListener('submit', submitTask);

@@ -241,7 +241,7 @@ textarea {
   .form-control {
     display: flex;
   }
-  .task-input {
+  .task-input,.login-input {
     border-radius: 0;
     border-top-left-radius: var(--borderRadius);
     border-bottom-left-radius: var(--borderRadius);

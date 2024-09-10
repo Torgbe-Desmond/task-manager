@@ -1,3 +1,7 @@
+const BASE_URL = 'https://task-manager-lj45.onrender.com';
+// const BASE_URL = 'http://localhost:3000';
+
+
 document.addEventListener('DOMContentLoaded', function () {
   const taskIDDOM = document.querySelector('.task-edit-id');
   const taskCompletedDOM = document.querySelector('.task-edit-completed');
@@ -6,9 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const formAlertDOM = document.querySelector('.form-alert');
   let tempName = document.querySelector('.task-edit-name').value;
 
-  const BASE_URL = 'https://task-manager-lj45.onrender.com';
 
-  // const BASE_URL = 'http://localhost:3000';
 
   editFormDOM.addEventListener('submit', async function (e) {
     e.preventDefault();
