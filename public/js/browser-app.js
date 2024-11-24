@@ -4,10 +4,7 @@ const BASE_URL = 'https://task-manager-lj45.onrender.com';
 
 document.addEventListener('DOMContentLoaded', function() {
   const taskContainer = document.querySelector('.tasks');
-  const loadingText = document.querySelector('.loading-text');
   const taskFormDOM = document.querySelector('.task-form');
-  const taskInputDOM = document.querySelector('.task-input');
-  const formAlertDOM = document.querySelector('.form-alert');
   const logoutButton = document.getElementById('logoutButton');
   const editLink = document.querySelector('.edit-link')
 
@@ -21,10 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
  })
 
-  // Handle task form submit
   taskFormDOM.addEventListener('submit', submitTask);
 
-  // Use event delegation for delete buttons
   taskContainer.addEventListener('click', function(e) {
     const deleteButton = e.target.closest('.delete-btn');
     if (deleteButton) {
@@ -33,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Logout button event listener
   logoutButton.addEventListener('click', async function() {
     try {
       const response = await axios.post(`${BASE_URL}/logout`);
@@ -48,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Function to delete a task
 async function deleteTask(id) {
   try {
     const response = await axios.delete(`${BASE_URL}/tasks/${id}`);
@@ -70,7 +63,6 @@ async function deleteTask(id) {
 }
 
 
-// Form submit handler
 async function submitTask(e) {
   e.preventDefault();
   const taskInputDOM = document.querySelector('.task-input');
@@ -83,7 +75,6 @@ async function submitTask(e) {
     if (response.status === 201) {
       const { completed, name: taskName, _id: taskID } = response.data;
 
-      // Create the HTML string for the new task
       const newTaskHTML = `
         <div class="single-task ${completed ? 'task-completed' : ''}">
           <h5>
@@ -105,11 +96,14 @@ async function submitTask(e) {
         </div>
       `;
     
-      // Insert the new task HTML into the task container
-      const taskContainer = document.querySelector('.tasks');
-      taskContainer.insertAdjacentHTML('beforeend', newTaskHTML);
+
+      let taskContainer = document.querySelector('.tasks');
+      if (taskContainer.innerHTML.trim() === '') {
+        taskContainer.innerHTML = newTaskHTML;
+      } else {
+        taskContainer.insertAdjacentHTML('beforeend', newTaskHTML);
+      }
       
-      // Clear the input field and show success message
       taskInputDOM.value = '';
       formAlertDOM.style.display = 'block';
       formAlertDOM.textContent = 'Success, task added';
@@ -124,7 +118,6 @@ async function submitTask(e) {
     formAlertDOM.textContent = 'Error, please try again';
   }
 
-  // Hide the alert message after 3 seconds
   setTimeout(() => {
     formAlertDOM.style.display = 'none';
     formAlertDOM.classList.remove('text-success');
