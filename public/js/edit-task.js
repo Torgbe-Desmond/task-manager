@@ -1,5 +1,5 @@
-const BASE_URL = 'https://task-manager-lj45.onrender.com';
-// const BASE_URL = 'http://localhost:3000';
+// const BASE_URL = 'https://task-manager-lj45.onrender.com';
+const BASE_URL = 'http://localhost:3000';
 
 
 document.addEventListener('DOMContentLoaded', function () {

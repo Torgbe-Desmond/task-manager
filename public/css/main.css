@@ -221,6 +221,7 @@ textarea {
 }
 .task-form h4 {
   text-align: center;
+  font-size: 14px;
 }
 .task-form .form-alert {
   margin-top: 1rem;
@@ -231,16 +232,22 @@ textarea {
 }
 
 .task-edit-id{
-  box-sizing: border-box;
+  /* box-sizing: border-box;
   width: 100%;
   overflow-x: scroll;
-  contain: content;
+  contain: content; */
 }
 
 @media screen and (min-width: 576px) {
   .form-control {
     display: flex;
+    font-size: 16px;
   }
+  
+  .task-edit-id{
+ 
+  }
+
   .task-input,.login-input {
     border-radius: 0;
     border-top-left-radius: var(--borderRadius);
@@ -363,6 +370,11 @@ form > :last-child {
 }
 .single-task h5 {
   margin-bottom: 0;
+  font-size: 12px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
 }
 .single-task span {
   display: inline-block;
@@ -370,6 +382,7 @@ form > :last-child {
   height: 0.5rem;
   margin-left: -1.25rem;
   margin-right: 1.5rem;
+  margin-bottom: 0.6rem;
 }
 .single-task .fa-check-circle {
   font-size: 1rem;
@@ -396,13 +409,27 @@ form > :last-child {
   background: transparent;
   font-size: 0.75rem;
   border: transparent;
-  cursor: pointer;
+  cursor: pointer;    
 }
 .edit-link {
   color: var(--green-dark);
 }
 .delete-btn {
   color: var(--red-dark);
+}
+
+@media screen and (min-width: 600px) {
+  .single-task h5{
+    font-size: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+  }
+  .task-form h4 {
+    text-align: center;
+    font-size: 16px;
+  }
 }
 
 /*************
@@ -426,6 +453,9 @@ form > :last-child {
   contain: content;
   gap: 0 1rem;
   margin-bottom: 0.75rem;
+}
+.form-control{
+  font-size: 16px;
 }
 
 .single-task-form label {
@@ -591,8 +621,13 @@ form > :last-child {
   text-transform: capitalize;
 }
 
+.error-message{
+  display: none;
+}
 
-
+#switch-to-register, #switch-to-login{
+  cursor: pointer;
+}
 
 .header .logout-btn:hover,.login-btn:hover,.register-btn:hover {
     color: var(--white);

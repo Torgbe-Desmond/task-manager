@@ -1,5 +1,5 @@
-const BASE_URL = 'https://task-manager-lj45.onrender.com';
-// const BASE_URL = 'http://localhost:3000';
+// const BASE_URL = 'https://task-manager-lj45.onrender.com';
+const BASE_URL = 'http://localhost:3000';
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -9,8 +9,17 @@ document.addEventListener('DOMContentLoaded', function() {
   const taskInputDOM = document.querySelector('.task-input');
   const formAlertDOM = document.querySelector('.form-alert');
   const logoutButton = document.getElementById('logoutButton');
+  const editLink = document.querySelector('.edit-link')
 
-  // Store base URL in a constant
+
+ editLink.addEventListener('click',function(e){
+  const editLink = e.target.closest('.edit-link');
+  if (deleteButton) {
+    const id = editLink.getAttribute('taskId');
+     window.location.href = `${BASE_URL}/tasks/${id}`
+
+  }
+ })
 
   // Handle task form submit
   taskFormDOM.addEventListener('submit', submitTask);
@@ -59,6 +68,7 @@ async function deleteTask(id) {
     console.error('Error deleting task:', error);
   }
 }
+
 
 // Form submit handler
 async function submitTask(e) {
@@ -109,6 +119,7 @@ async function submitTask(e) {
       window.location.href = BASE_URL;
     }
   } catch (error) {
+    console.log('error',error.message)
     formAlertDOM.style.display = 'block';
     formAlertDOM.textContent = 'Error, please try again';
   }
